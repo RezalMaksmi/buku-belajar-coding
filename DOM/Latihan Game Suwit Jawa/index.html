@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Latihan DOM</title>
+  <style type="text/css">
+    *{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      /*border: 1px solid;*/
+    }
+    body{
+      text-align: center;
+    }
+    .container{
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 30px;
+      justify-content: center;
+      align-items: center;
+
+    }
+    .container .area-komputer{
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      background-color: skyblue;
+      overflow: hidden;
+    }
+    .container .area-komputer img{
+      width: 100%;
+      height: 100%;
+    }
+
+    .container .info{
+      width: 250px;
+      height: 70px;
+      border-radius: 12px;
+      background-color: black;
+      font-size: 2rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+
+    .container .area-player{
+      width: auto;
+
+    }
+    .container .area-player ul{
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+    .container .area-player ul li{
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
+      background-color: skyblue;
+      overflow: hidden;
+    }
+    .container .area-player ul li img{
+       width: 100%;
+      height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Suwit Jawa v2.0</h1>
+
+  <div class="container">
+    <div class="area-komputer">
+      <img src="" class="img-komputer">
+    </div>
+    <div class="hasil">
+      <h2>Score</h2>
+      <h3 class="score-comp"> </h3>
+      <h3 class="score-player"> </h3>
+      <div class="info"></div>
+    </div>
+    
+    <div class="area-player">
+      <ul>
+        <li><img src="batu.png" class="batu"></li>
+        <li><img src="kertas.png" class="kertas"></li>
+        <li><img src="gunting.png" class="gunting"></li>
+      </ul>
+    </div>
+  </div>
+  <script type="text/javascript">
+    function getPilihanCom() {
+      const comp = Math.random()
+      if (comp < 0.34) return 'batu'
+      if (comp >= 0.34 && comp < 0.67) return 'kertas'
+        return 'gunting'
+    }
+
+    function getHasil(comp, player) {
+      if (player == comp) return 'SERI'
+      if (player == 'batu') return (comp == 'kertas')? 'KALAH' : 'MENANG';
+      if (player == 'kertas') return (comp == 'gunting')? 'KALAH' : 'MENANG';
+      if (player == 'gunting') return (comp == 'batu')? 'KALAH' : 'MENANG';
+
+    }
+
+    function putar(){
+      const imgCom = document.querySelector('.img-komputer')
+      // setInterval adalah fungsi untuk melakukan sesuatu secara berulang ulang selama interval waktu tertentu
+
+      const gambar = ['batu','kertas','gunting']
+      let i = 0
+      const waktu = new Date().getTime()
+
+      setInterval(function(){  
+        if( new Date().getTime()-waktu > 1000){
+          clearInterval
+          return
+        }
+        imgCom.setAttribute('src',gambar[i++]+'.png')
+        if (i == gambar.length) i = 0
+      }, 100)
+      // 100 = 0,1 detik
+    }
+
+    // function score() {
+
+    //   const gethasil = getHasil()
+    //   const pilihanCom = getPilihanCom()
+    //   const pilihanPlayer = pill.className
+    //   const hasil = getHasil(pilihanCom,pilihanPlayer)
+    //   console.log(getHasil)
+
+    // }
+
+// cara simpel
+    const pilihan = document.querySelectorAll('li img')
+    // perulangan
+    pilihan.forEach(function(pil){
+      pil.addEventListener('click', function(){
+        // console.log(pil)
+
+      const pilihanCom = getPilihanCom()
+      const pilihanPlayer = pil.className
+      const hasil = getHasil(pilihanCom,pilihanPlayer)
+      // console.log('comp :'+pilihanCom)
+      // console.log('player :'+pilihanPlayer)
+      // console.log(hasil)
+
+      function score() {
+        console.log(hasil)
+        // const com=document.querySelector('.score-comp')
+        // const play=document.querySelector('.score-player')
+        // let scoreP 
+        // let scoreC 
+        // let tambah = 1
+
+        // if (hasil==='MENANG') return let scoreP=+tambah 
+        //   // for (var i = 0; i < scoreP; i++ ) {
+            
+        //   // }
+        // if (hasil==='KALAH') return scoreC=+tambah 
+        // if (hasil==='SERI') return 
+        // com.innerHTML=scoreC
+        // play.innerHTML=scoreP
+      }
+
+
+
+      putar()
+
+      setTimeout(function(){
+        console.log(score())
+
+        const imgCom = document.querySelector('.img-komputer')
+        imgCom.setAttribute('src',pilihanCom+'.png')
+
+        const info = document.querySelector('.info')
+        info.innerHTML=hasil
+      },1000)
+
+      
+
+      })
+    })
+
+
+
+
+    // const pBatu = document.querySelector('.batu')
+    // pBatu.addEventListener('click', function(){
+    //   const pilihanCom = getPilihanCom()
+    //   // mengambil value dari classname
+    //   const pilihanPlayer = pBatu.className
+    //   const hasil = getHasil(pilihanCom,pilihanPlayer)
+    //   console.log('comp :'+pilihanCom)
+    //   console.log('player :'+pilihanPlayer)
+    //   console.log(hasil)
+
+    //   const imgCom = document.querySelector('.img-komputer')
+    //   imgCom.setAttribute('src',pilihanCom+'.png')
+
+    //   const info = document.querySelector('.info')
+    //   info.innerHTML=hasil
+
+    // })
+
+    // const pKertas = document.querySelector('.kertas')
+    // pKertas.addEventListener('click', function(){
+    //   const pilihanCom = getPilihanCom()
+    //   // mengambil value dari classname
+    //   const pilihanPlayer = pKertas.className
+    //   const hasil = getHasil(pilihanCom,pilihanPlayer)
+    //   console.log('comp :'+pilihanCom)
+    //   console.log('player :'+pilihanPlayer)
+    //   console.log(hasil)
+
+    //   const imgCom = document.querySelector('.img-komputer')
+    //   imgCom.setAttribute('src',pilihanCom+'.png')
+
+    //   const info = document.querySelector('.info')
+    //   info.innerHTML=hasil
+
+    // })
+
+    // const pGunting = document.querySelector('.gunting')
+    // pGunting.addEventListener('click', function(){
+    //   const pilihanCom = getPilihanCom()
+    //   // mengambil value dari classname
+    //   const pilihanPlayer = pGunting.className
+    //   const hasil = getHasil(pilihanCom,pilihanPlayer)
+    //   console.log('comp :'+pilihanCom)
+    //   console.log('player :'+pilihanPlayer)
+    //   console.log(hasil)
+
+    //   const imgCom = document.querySelector('.img-komputer')
+    //   imgCom.setAttribute('src',pilihanCom+'.png')
+
+    //   const info = document.querySelector('.info')
+    //   info.innerHTML=hasil
+
+    // })
+
+
+
+
+  </script>
+  <!-- <script type="text/javascript" src="script.js"></script> -->
+</body>
+</html>

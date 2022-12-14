@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Latihan DOM</title>
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+    *{
+      margin: 0;
+      padding: 0;
+      /*border: 1px solid;*/
+      list-style: none;
+      text-decoration: none;
+      font-family: 'Poppins', sans-serif;
+    }
+    nav{
+      width: 100%;
+      height: 60px;
+      background-color: #003865;
+      box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.25);
+      position: fixed;
+
+    }
+    nav .container{
+      max-width: 1440px;
+      width: 100%;
+      height: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background-color: #003865;
+
+
+    }
+    nav .container h1{
+      color: #3CCF4E;
+    }
+
+    nav .container ul{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 100%;
+      width: auto;
+      gap: 10px;
+    }
+    nav .container ul li{
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    nav .container ul li a{
+      padding: 0px 20px;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+    }
+    nav .container ul li a:hover{
+      color: #3CCF4E;
+    }
+
+    #kotak{
+      width: 40px;
+      height: 40px;
+      background-color: #3CCF4E;
+      display: none;
+    }
+
+    @media screen and (max-width: 1024px) {   
+      #kotak{
+        display: block;
+      }
+      nav .container ul{
+        display: none;
+      }
+      nav .container .active{
+        z-index: 0;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        background-color: #D4F6CC;
+        color: white;
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        right: 0px;
+        width: 100%;
+        border-radius: 0px 0px 13px 13px;
+        z-index: -1;
+        height: auto;
+        justify-content: flex-start;
+        gap: 0px;
+        justify-content: center;
+        box-shadow: 0px 4px 10px 1px rgba(0, 0, 0, 0.25);
+      }
+      nav .container ul li{
+        margin-top: 15px;
+        margin-bottom: 10px;
+        padding: 0;
+        height: 30px;
+        width: auto;
+        color: white;
+      }
+      nav .container ul li a{
+        color: #3CCF4E;
+        font-size: 12px;
+
+      }
+      nav .container ul li a:hover{
+        color: #003865;
+        font-size: 12px;
+
+      }
+      
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="container">
+      <section>
+        <h1>Ijo Biru</h1>
+      </section>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Profil</a></li>
+        <li><a href="#">Tentang</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+      <section id="kotak"></section>
+    </div>
+  </nav>
+  <script type="text/javascript" src="script.js"></script>
+</body>
+</html>

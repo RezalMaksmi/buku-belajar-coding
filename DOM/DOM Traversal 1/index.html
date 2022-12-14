@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Dom Selection</title>
+  <style>
+    *{
+      /*border: 1px solid;*/
+    }
+    body {
+    margin: 50px;
+    font-family: arial;
+    background-color: #666;
+}
+
+.container {
+    width: 900px;
+    margin: auto;
+}
+
+.card {
+    display: inline-block;
+    width: 220px;
+    padding: 0 80px;
+    height: 80px;
+    font-size: 16px;
+    line-height: 80px;
+    border-radius: 40px;
+    background-color: #f1f1f1;
+    margin: 20px;
+    position: relative;
+    text-align: center;
+}
+
+.card img {
+    float: left;
+    margin: 0 10px 0 -80px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    position: relative;
+}
+
+.card .nama, .card .telp {
+    display: block;
+    line-height: 20px;
+    padding: 0 5px;
+}
+
+.card .nama {
+    margin-left: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.card .telp {
+    margin-left: 20px;
+    margin-top: 5px;
+    font-size: 16px;
+    color: #aaa;
+}
+
+.card .close {
+    font-size: 24px;
+    font-weight: bold;
+    color: #999;
+    position: absolute;
+    top: 0;
+    right: 30px;
+    cursor: pointer;
+}
+
+.card:hover .close {
+    color: red;
+}
+.container .d-none{
+  display: none;
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="card">
+      <img src="logoBJ.png" width="96" height="96">
+      <span class="nama">Sandhika Galih</span>
+      <span class="telp">08123456789</span>
+      <span class="close">×</span>
+    </div> 
+
+    <div class="card">
+      <img src="logoBJ.png" width="96" height="96">
+      <span class="nama">Rezal Nur</span>
+      <span class="telp">08123456789</span>
+      <span class="close">×</span>
+    </div> 
+
+    <div class="card">
+      <img src="logoBJ.png" width="96" height="96">
+      <span class="nama">Niko</span>
+      <span class="telp">08123456789</span>
+      <span class="close">×</span>
+    </div> 
+
+    <div class="card">
+      <img src="logoBJ.png" width="96" height="96">
+      <span class="nama">Galih</span>
+      <span class="telp">08123456789</span>
+      <span class="close">×</span>
+    </div> 
+
+</div>
+<script type="text/javascript">
+  // const hapus = document.querySelector('.close')
+  // const kontainer = document.querySelector('.container')
+  // const konten = document.querySelector('.card')
+
+  // hapus.addEventListener('click', function(){
+  //   kontainer.removeChild(konten)
+  // })
+
+// contoh tidak dengan DOM Traversal
+  // const hapus = document.querySelectorAll('.close') 
+  // const konten = document.querySelectorAll('.card')
+  // for (let i = 0; i < hapus.length; i++) {
+  //   hapus[i].addEventListener('click', function(){
+
+  //     konten[i].style.display='none'
+    
+  //   })
+  // }
+
+// Contoh menggunakan DOM Traversal
+  const hapus = document.querySelectorAll('.close') 
+  
+  // for (let i = 0; i < hapus.length; i++) {
+    // cara 1
+    // hapus[i].addEventListener('click', function(){
+
+    //   hapus[i].parentElement.style.display ='none'
+// penjelasan dari kode diatas
+// tangkap hapus('.close') dan panggil parentElement(orang tuanya/pembungkusnya) lalu berikan style display none
+    
+    // })
+
+    // cara 2
+    // hapus[i].addEventListener('click',function(e){
+// e.target artinya target yang kita klik sudah mendefinisikan hapus[i] 
+    //   e.target.parentElement.style.display='none'
+    // })
+
+  // }
+ 
+
+// cara simpel
+hapus.forEach(function(el){
+// artinya tiap element dari nodelist(hapus) perulangan dengan nama (el) 
+  el.addEventListener('click', function(e){
+    e.target.parentElement.style.display='none'
+  })
+})
+
+
+</script>
+
+<!-- <script src="script.js"></script> -->
+</body>
+</html>
